@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import { Helmet } from "react-helmet-async"; 
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
+import { toast } from "sonner";
 
 const signInForm = z.object({
     email: z.string().email()
@@ -16,7 +17,14 @@ export function SignIn() {
 
     async function handleSignIn(data: SignInForm) {
         console.log(data)
-        await new Promise((resolve) => setTimeout(resolve, 20000))
+        await new Promise((resolve) => setTimeout(resolve, 2000))
+
+        toast.success('We sent an authentication link to your email.', {
+            action: {
+                label: 'Resend',
+                onClick: () => handleSignIn(data),
+            }
+        })
     }
 
     return (
