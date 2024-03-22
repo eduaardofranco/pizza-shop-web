@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet-async";
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import { toast } from "sonner";
+import { Link } from 'react-router-dom'
 
 const signInForm = z.object({
     email: z.string().email()
@@ -31,6 +32,9 @@ export function SignIn() {
         <>
             <Helmet title="Login" />
             <div className="p-8">
+                <Button variant="ghost" asChild className="absolute right-8 top-8">
+                    <Link to="/sign-up">New establishment</Link>
+                </Button>
                 <div className="w-[340px] flex flex-col justify-center gap-6">
                     <div className="flex flex-col gap-2 text-center">
                         <h1 className="text-2xl font-semibold tracking-tight">Acess Dashboard</h1>
@@ -52,7 +56,7 @@ export function SignIn() {
                             type="submit"
                             className="w-full"
                             disabled={isSubmitting}>
-                            Acess
+                            Access
                         </Button>
                     </form>
                 </div>
