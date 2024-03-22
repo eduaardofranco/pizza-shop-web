@@ -24,7 +24,6 @@ export function SignUp() {
     const { register, handleSubmit, formState: { isSubmitting} } = useForm<signUpForm>()
 
     async function handlesignUp(data: signUpForm) {
-        console.log(data)
         try {
             await new Promise((resolve) => setTimeout(resolve, 2000))
             toast.success('Restaurant successfully registered!', {
