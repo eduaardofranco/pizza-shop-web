@@ -1,9 +1,24 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet-async"; 
+import { useForm } from 'react-hook-form'
+import * as z from 'zod'
 
+const signInForm = z.object({
+    email: z.string().email()
+})
+
+type SignInForm = z.infer<typeof signInForm>
 export function SignIn() {
+
+    const { register, handleSubmit, formState: { isSubmitting} } = useForm<SignInForm>()
+
+    async function handleSignIn(data: SignInForm) {
+        console.log(data)
+        await new Promise((resolve) => setTimeout(resolve, 20000))
+    }
+
     return (
         <>
             <Helmet title="Login" />
@@ -16,16 +31,21 @@ export function SignIn() {
                         </p>
                     </div>
 
-                    <form className="space-y-4">
+                    <form className="space-y-4" onSubmit={handleSubmit(handleSignIn)}>
                         <div className="space-y-2">
                             <Label htmlFor="email">Your E-mail</Label>
-                            <Input id="email" type="email" />
+                            <Input
+                                id="email"
+                                type="email"
+                                {...register('email')}
+                            />
                         </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="password">Password</Label>
-                            <Input id="password" type="password" />
-                        </div>
-                        <Button type="submit" className="w-full">Acess</Button>
+                        <Button
+                            type="submit"
+                            className="w-full"
+                            disabled={isSubmitting}>
+                            Acess
+                        </Button>
                     </form>
                 </div>
 
