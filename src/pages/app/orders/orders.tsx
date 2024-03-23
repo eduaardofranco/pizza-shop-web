@@ -4,6 +4,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { ArrowRight, Search, X } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { OrderTableRow } from "./orders-table-row";
+import { OrderTableFilters } from "./order-table-filters";
 
 export function Orders() {
     return(
@@ -13,10 +14,7 @@ export function Orders() {
             <h1 className="text-3xl font-bold tracking-tighter">Orders</h1>
         </div>
         <div className="space-y-2 5">
-            <form className="flex items-center gap-2">
-                <span className="text-sm font-semibold">Filters:</span>
-                <Input placeholder="Customer's Name" className="h-8 w-[320px]" />
-            </form>
+            <OrderTableFilters />
             <div className="border rounded-md">
                 <Table>
                     <TableHeader>
