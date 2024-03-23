@@ -1,7 +1,7 @@
 import { Separator } from "@radix-ui/react-separator";
 import { Home, Pizza, UtensilsCrossed } from "lucide-react";
-import { Link } from "react-router-dom";
 import { NavLink } from "./nav-link";
+import { ThemeToggle } from "./theme/theme-toggle";
 
 export function Header() {
     return(
@@ -23,6 +23,10 @@ export function Header() {
                     </NavLink>
 
                 </nav>
+
+                <div className="ml-auto flex items-center gap-2">
+                    <ThemeToggle />
+                </div>
             </div>
         </div>
     )
